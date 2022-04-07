@@ -1,0 +1,41 @@
+Login to the device using SSH / TELNET and go to enable mode.
+Go into the config mode.
+Router#configure terminal
+
+Enter configuration commands, one per line. End with CNTL/Z.
+
+Router(config)#
+
+Configure the router's inside interface
+Router(config)#interface fa0/0
+
+Router(config-if)#ip nat inside
+
+Router(config-if)#exit
+
+Configure the router's outside interface
+Router(config)#interface eth0/0/0
+
+Router(config-if)#ip nat outside
+
+Router(config-if)#exit
+
+Configure an ACL that has a list of the inside source addresses that will be translated.
+Router(config)#access-list 1 permit 192.168.0.0 0.0.0.255
+
+NOTE:The access list configured above matches all hosts from the 192.168.0.0/24 subnet.
+
+Configure the pool of global IP addresses
+Router(config)#ip nat pool MY_POOL 4.4.4.1 4.4.4.5 netmask 255.255.255.0
+
+NOTE: The pool configured above consists of 5 addresses: 4.4.4.1, 4.4.4.2, 4.4.4.3, 4.4.4.4, and 4.4.4.5.
+
+Enable dynamic NAT
+Router(config)#ip nat inside source list 1 pool MY_POOL
+
+NOTE: The command above instructs the router to translate all addresses specified in the access list 1 to the pool of global addresses called MY_POOL.
+
+Exit config mode
+Router(config)#exit
+
+Router#
