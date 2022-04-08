@@ -1,0 +1,7 @@
+Router(config)#router eigrp 20
+Router(config-router)#network 10.0.0.0 0.0.0.255
+Router(config-router)#network 192.168.1.244 0.0.0.3
+Router(config-router)#network 192.168.1.0 0.0.0.3
+
+Router(config)# router eigrp AS_number
+Router(config-router)# network network_address [wildcard_mask]
