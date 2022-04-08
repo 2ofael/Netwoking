@@ -1,0 +1,7 @@
+Router(config)#int fa 0/0
+Router(config-if)#ip add 192.168.1.1 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#
+Router(config-if)#int fa0/1
+Router(config-if)#ip add 192.168.2.1 255.255.255.0
+Router(config-if)#no shut
