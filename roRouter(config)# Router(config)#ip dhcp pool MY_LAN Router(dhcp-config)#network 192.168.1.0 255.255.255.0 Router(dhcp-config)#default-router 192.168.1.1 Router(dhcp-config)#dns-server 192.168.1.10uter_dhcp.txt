@@ -1,0 +1,5 @@
+Router(config)#
+Router(config)#ip dhcp pool MY_LAN
+Router(dhcp-config)#network 192.168.1.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.1.1
+Router(dhcp-config)#dns-server 192.168.1.10
